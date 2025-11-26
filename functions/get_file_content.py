@@ -1,9 +1,10 @@
 # functions/get_file_content.py
 import os
 from utils.tools import setup_paths, validate_scope
+from utils.config import MAX_CHARS
+
 
 def get_file_content(working_directory, file_path):
-    MAX_CHARS = 10000
     try:
         project_boundaries, target_path = setup_paths(working_directory, file_path)
         scope_error  = validate_scope(project_boundaries, target_path, file_path)
