@@ -1,3 +1,5 @@
+from google.genai import types
+
 from utils.config import WORKING_DIR
 from functions.get_files_info import get_files_info
 from functions.get_file_content import get_file_content
@@ -31,4 +33,12 @@ def call_function(function_call_part, verbose=False):
             ],
         )
     function_result = function_map[function_name](**args)
-    return function_result
+    return types.Content(
+        role="tool", 
+        parts=[
+        types.Part.from_function_response(
+            name=function_name, 
+            response={"response": function_result},
+        )
+    ],
+)
