@@ -34,7 +34,7 @@ python main.py "Prompt, Fix calculator/main.py, it's returning wrong values." [-
 ```
 
 ## Additional information
-Agent can use all functions in ```bash functions/ ``` directory which are:
+Agent can use all functions in ``` functions/ ``` directory which are:
 - Listing all files in directory with their size and type,
 - Listing file content,
 - Writing/Overwriting file content with creating its path,
@@ -66,5 +66,6 @@ Final response: Okay, I see the following files and directories in the current w
 *   main.py
 *   pkg (directory)
 ```
+
 
 
