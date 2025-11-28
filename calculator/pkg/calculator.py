@@ -1,22 +1,27 @@
+import re
+
 class Calculator:
     def __init__(self):
         self.operators = {
-            "+": lambda a, b: a + b,
-            "-": lambda a, b: a - b,
-            "*": lambda a, b: a * b,
-            "/": lambda a, b: a / b,
+            "+" : lambda a, b: a + b,
+            "-" : lambda a, b: a - b,
+            "*" : lambda a, b: a * b,
+            "/" : lambda a, b: a / b
         }
         self.precedence = {
-            "+": 1,
-            "-": 1,
-            "*": 2,
-            "/": 2,
+            "+" : 1,
+            "-" : 1,
+            "*" : 2,
+            "/" : 2
         }
 
     def evaluate(self, expression):
+        print(f"Evaluating: {expression}")
         if not expression or expression.isspace():
             return None
-        tokens = expression.strip().split()
+        # Use regex to split the expression into tokens
+        tokens = re.findall(r'(\d+\.?\d*|[-+*/()])', expression)
+        print(f"Tokens: {tokens}")
         return self._evaluate_infix(tokens)
 
     def _evaluate_infix(self, tokens):
@@ -24,12 +29,9 @@ class Calculator:
         operators = []
 
         for token in tokens:
+            print(f"Token: {token}")
             if token in self.operators:
-                while (
-                    operators
-                    and operators[-1] in self.operators
-                    and self.precedence[operators[-1]] >= self.precedence[token]
-                ):
+                while (operators and operators[-1] in self.operators and self.precedence[operators[-1]] >= self.precedence[token]):
                     self._apply_operator(operators, values)
                 operators.append(token)
             else:
@@ -47,6 +49,7 @@ class Calculator:
         return values[0]
 
     def _apply_operator(self, operators, values):
+        print(f"Applying operator. Operators: {operators}, Values: {values}")
         if not operators:
             return
 
