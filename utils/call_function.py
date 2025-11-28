@@ -17,6 +17,7 @@ def call_function(function_call_part, verbose=False):
     function_name = function_call_part.name
     function_args = function_call_part.args
     args = dict(function_args)
+
     args["working_directory"] = WORKING_DIR
     if verbose:
         print(f"Calling function: {function_name}({function_args})")
@@ -32,6 +33,10 @@ def call_function(function_call_part, verbose=False):
                 )
             ],
         )
+    # SETUP ARGS IN LIST
+    if "args" in args:
+        if isinstance(args["args"], str):
+            args["args"] = [args["args"]]
     function_result = function_map[function_name](**args)
     return types.Content(
         role="tool", 
