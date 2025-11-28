@@ -34,7 +34,7 @@ python main.py "Prompt, Fix calculator/main.py, it's returning wrong values." [-
 ```
 
 ## Additional information
-Agent can use all functions in functions/ directory which are:
+Agent can use all functions in ```bash functions/ ``` directory which are:
 - Listing all files in directory with their size and type,
 - Listing file content,
 - Writing/Overwriting file content with creating its path,
@@ -66,24 +66,5 @@ Final response: Okay, I see the following files and directories in the current w
 *   main.py
 *   pkg (directory)
 ```
-## List files
-```bash
-python3 main.py "hello, list files only names"
-```
-```bash
-OUTPUT:
-Function calls:  1
- - Calling function: get_files_info
- - Calling function: get_files_info
-Final response: Okay, I see the following files and directories in the current working directory:
 
-*   README.md
-*   args.txt
-*   tests.py
-*   test\_calculator.py
-*   lorem.txt
-*   \_\_pycache\_\_ (directory)
-*   temp\_runner.py
-*   main.py
-*   pkg (directory)
-```
+
