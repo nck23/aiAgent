@@ -25,14 +25,13 @@ def main():
         sys.exit(1)
 
     user_prompt = " ".join(args)
+    messages = [
+    types.Content(role="user", parts=[types.Part(text=user_prompt)]),
+    ]
 
     if verbose:
         print(f"User prompt: {user_prompt}")
 
-    messages = [
-    types.Content(role="user", parts=[types.Part(text=user_prompt)]),
-    ]
-    
     iterations = 0
     while True:
         iterations += 1

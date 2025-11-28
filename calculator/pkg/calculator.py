@@ -30,8 +30,14 @@ class Calculator:
 
         for token in tokens:
             print(f"Token: {token}")
-            if token in self.operators:
-                while (operators and operators[-1] in self.operators and self.precedence[operators[-1]] >= self.precedence[token]):
+            if token == '(': 
+                operators.append(token)
+            elif token == ')':
+                while operators and operators[-1] != '(': # corrected this line
+                    self._apply_operator(operators, values)
+                operators.pop()  # Remove the opening parenthesis
+            elif token in self.operators:
+                while (operators and operators[-1] != '(' and operators[-1] in self.operators and self.precedence[operators[-1]] >= self.precedence[token]):
                     self._apply_operator(operators, values)
                 operators.append(token)
             else:
